@@ -4,4 +4,4 @@ Host {{host.name}}
 {% if host.user is defined %}User {{host.user}}{% endif %}
 {% if host.proxy and proxy_env is defined %}ProxyCommand corkscrew {{http_proxy_hostname}} {{http_proxy_port}} %h %p{% endif %}
 # end {{host.name}}
-{% endif %}
+{% endfor %}
