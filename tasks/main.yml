@@ -1,0 +1,8 @@
+---
+# tasks file for ssh-config
+- name: writing ssh-config
+  template: >-
+    src=ssh_config.j2
+    dest={{ssh_config_target}}
+    mode=644
+    
