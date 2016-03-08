@@ -1,7 +1,13 @@
 {% for host in ssh_config_hosts %}
 Host {{host.name}}
-{% if host.raw is defined %}{{host.raw}}{% endif %}
-{% if host.user is defined %}User {{host.user}}{% endif %}
-{% if host.proxy is defined and proxy_env is defined %}ProxyCommand corkscrew {{http_proxy_hostname}} {{http_proxy_port}} %h %p{% endif %}
+{% if host.raw is defined %}
+{{host.raw}}
+{% endif %}
+{% if host.user is defined %}
+User {{host.user}}
+{% endif %}
+{% if host.proxy is defined and proxy_env is defined %}
+ProxyCommand corkscrew {{http_proxy_hostname}} {{http_proxy_port}} %h %p
+{% endif %}
 # end {{host.name}}
 {% endfor %}

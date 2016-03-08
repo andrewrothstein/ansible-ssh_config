@@ -3,7 +3,7 @@
 ssh_config_target: '/etc/ssh/ssh_config'
 ssh_config_hosts:
   - name: '*'
-    raw: >-
+    raw: |+
       SendEnv LANG LC_*
       SendEnv XMODIFIERSHashKnownHosts yes
       GSSAPIAuthentication yes
@@ -15,7 +15,7 @@ ssh_config_hosts:
     proxy: True
   - name: '*.vagrant'
     user: vagrant
-    raw: >-
+    raw: |+
       StrictHostKeyChecking no
       UserKnownHostsFile=/dev/null
       LogLevel ERROR
