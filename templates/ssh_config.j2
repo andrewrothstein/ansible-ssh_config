@@ -9,5 +9,5 @@ User {{host.user}}
 {% if host.proxy is defined and proxy_env is defined %}
 ProxyCommand corkscrew {{http_proxy_hostname}} {{http_proxy_port}} %h %p
 {% endif %}
-# end {{host.name}}
+
 {% endfor %}

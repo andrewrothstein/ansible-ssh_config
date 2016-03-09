@@ -21,7 +21,7 @@ galaxy_info:
         - vivid
         - wily
 
-  categories:
+  galaxy_tags:
     - development
 
 dependencies: []
