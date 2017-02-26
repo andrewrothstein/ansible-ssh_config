@@ -1,8 +1,10 @@
 ---
 # tasks file for ssh-config
-- name: writing ssh-config
-  template: >-
-    src=ssh_config.j2
-    dest={{ssh_config_target}}
-    mode=644
+- name: writing ssh config
+  become: '{{ssh_config_privilege_elevate}}'
+  become_user: root
+  template:
+    src: config.j2
+    dest: '{{ssh_config_target}}'
+    mode: 0400
     

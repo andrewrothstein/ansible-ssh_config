@@ -1,0 +1,34 @@
+{% for host in ssh_config.hosts %}
+Host {{host.name}}
+{% if host.raw is defined %}
+{{host.raw}}
+{% endif %}
+
+{% if host.user is defined %}
+User {% if host.user is defined %}{{host.user}}{% endif %}
+{% endif %}
+
+{% for scm in ssh_config_maps %}
+{% if host[scm] is defined %}
+{% for k, v in host[scm].iteritems() %}
+SendEnv {{k}} {{v}}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+{% for scv in ssh_config_vals %}
+{% if host[scv] is defined %}
+{{scv}} {{host.scv}}
+{% endif %}
+{% endfor %}
+
+{% if host.proxy is defined %}
+{% if host.proxy.cmd="cockscrew" %}
+ProxyCommand {{ssh_config_corkscrew_path}} {% if host.proxy.host is defined %}{{host.proxy.host}}{% else %}{{http_proxy_hostname}}{% endif %} {% if host.proxy.port is defined %}{{host.proxy.port}}{% else {{http_proxy_port}}{% endif %} %h %p
+{% endif %}
+{% elsif host.proxy.cmd="bastion" %}
+ProxyCommand ssh -W %h:%p {% if host.proxy.user is define %}{{host.proxy.user}}@{% endif %}{{host.proxy.host}}
+{% endif %}
+{% endif %}
+
+{% endfor %}

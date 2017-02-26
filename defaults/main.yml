@@ -1,22 +1,62 @@
 ---
 # defaults file for ssh-config
-ssh_config_target: '/etc/ssh/ssh_config'
-ssh_config_hosts:
-  - name: '*'
-    raw: |+
-      SendEnv LANG LC_*
-      SendEnv XMODIFIERSHashKnownHosts yes
-      GSSAPIAuthentication yes
-      GSSAPIDelegateCredentials no
-  - name: github.com
-    proxy: True
-    user: git
-  - name: '*.amazonaws.com'
-    proxy: True
-  - name: '*.vagrant'
-    user: vagrant
-    raw: |+
-      StrictHostKeyChecking no
-      UserKnownHostsFile=/dev/null
-      LogLevel ERROR
-      ForwardAgent yes
+ssh_config_privilege_elevate: False
+
+ssh_config_user: '{{ansible_user}}'
+
+ssh_config_user_homedir:
+  prefix: /home
+  user: '{{ssh_config_user}}'
+  file: .ssh/config
+
+ssh_config_system_homedir:
+  prefix: /etc/ssh
+  file: ssh_config
+
+ssh_config_corkscrew_path: /usr/local/bin/corkscrew
+
+ssh_config_maps:
+  - SendEnv
+
+ssh_config_vals:
+  - StrictHostKeyChecking
+  - UserKnownHostsFile
+  - LogLevel
+  - ForwardAgent
+  - GSSAPIAuthentication
+  - GSSAPIDelegateCredentials
+  - ControlMaster
+  - ControlPath
+  - ControlPersist
+
+ssh_config:
+  - hosts:
+    - name: *
+      SendEnv:
+        LANG: LC_*
+        XMODIFIERSHashKnownHosts: yes
+      GSSAPIAuthentication: yes
+      GSSAPIDelegateCredentials: no
+    - name: *.vagrant.test
+      User: vagrant
+      StrictHostKeyChecking: no
+      UserKnownHostsFile: /dev/null
+      LogLevel: ERROR
+      ForwardAgent: yes
+    - name: github.com
+      proxy:
+        cmd: corkscrew
+      user: git
+    - name: *.amazonaws.com
+      proxy:
+        cmd: corkscrew
+    - name: bastion.drewfus.org
+      ControlMaster: auto
+      ControlPath: ~/.ssh/mux-%r@%h:%p
+      ControlPersist: 15m
+      proxy:
+        cmd: corkscrew
+    - name: *.drewfus.org
+      proxy:
+        cmd: bastion
+        host: bastion.drewfus.org
