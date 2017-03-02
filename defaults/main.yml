@@ -31,13 +31,13 @@ ssh_config_vals:
 
 ssh_config:
   - hosts:
-    - name: *
+    - name: '*'
       SendEnv:
         LANG: LC_*
         XMODIFIERSHashKnownHosts: yes
       GSSAPIAuthentication: yes
       GSSAPIDelegateCredentials: no
-    - name: *.vagrant.test
+    - name: '*.vagrant.test'
       User: vagrant
       StrictHostKeyChecking: no
       UserKnownHostsFile: /dev/null
@@ -47,7 +47,7 @@ ssh_config:
       proxy:
         cmd: corkscrew
       user: git
-    - name: *.amazonaws.com
+    - name: '*.amazonaws.com'
       proxy:
         cmd: corkscrew
     - name: bastion.drewfus.org
@@ -56,7 +56,7 @@ ssh_config:
       ControlPersist: 15m
       proxy:
         cmd: corkscrew
-    - name: *.drewfus.org
+    - name: '*.drewfus.org'
       proxy:
         cmd: bastion
         host: bastion.drewfus.org
