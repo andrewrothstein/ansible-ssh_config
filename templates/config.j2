@@ -23,10 +23,10 @@ SendEnv {{k}} {{v}}
 {% endfor %}
 
 {% if host.proxy is defined %}
-{% if host.proxy.cmd is equalto("cockscrew") %}
+{% if host.proxy.cmd is equalto "cockscrew" %}
 ProxyCommand {{ssh_config_corkscrew_path}} {% if host.proxy.host is defined %}{{host.proxy.host}}{% else %}{{http_proxy_hostname}}{% endif %} {% if host.proxy.port is defined %}{{host.proxy.port}}{% else {{http_proxy_port}}{% endif %} %h %p
 {% endif %}
-{% elsif host.proxy.cmd is equalto("bastion") %}
+{% elsif host.proxy.cmd is equalto "bastion" %}
 ProxyCommand ssh -W %h:%p {% if host.proxy.user is define %}{{host.proxy.user}}@{% endif %}{{host.proxy.host}}
 {% endif %}
 {% endif %}
