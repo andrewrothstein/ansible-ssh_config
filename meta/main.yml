@@ -3,32 +3,28 @@ galaxy_info:
   author: Andrew Rothstein
   description: creates a ssh config file
   company: BlackRock
-  license:
-    - MIT
+  license: MIT
   min_ansible_version: 1.2
   platforms:
     - name: Alpine
       versions:
         - all
-    - name: EL
-      versions:
-        - 7
-    - name: Fedora
-      versions:
-        - 23
-        - 24
-        - 25
-        - 26
-    - name: Ubuntu
-      versions:
-        - trusty
-        - xenial
     - name: Debian
       versions:
-        - jessie
-
+        - bookworm
+        - bullseye
+    - name: EL
+      versions:
+        - 8
+        - 9
+    - name: Fedora
+      versions:
+        - 38
+        - 39
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
   galaxy_tags:
     - development
-
-dependencies: []
-  
+  role_name: ssh_config

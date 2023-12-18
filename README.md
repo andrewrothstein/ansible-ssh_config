@@ -1,6 +1,6 @@
-andrewrothstein.ssh-config
+andrewrothstein.ssh_config
 ===========================
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-ssh-config.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-ssh-config)
+![Build Status](https://github.com/andrewrothstein/ansible-ssh_config/actions/workflows/build.yml/badge.svg)
 
 Configures SSH
 
@@ -25,7 +25,7 @@ Example Playbook
 ```yml
 - hosts: servers
   roles:
-    - andrewrothstein.ssh-config
+    - andrewrothstein.ssh_config
 ```
 
 License

@@ -1,12 +1,12 @@
 ---
-# defaults file for ssh-config
-ssh_config_privilege_elevate: False
+# defaults file for ssh_config
+ssh_config_privilege_elevate: false
 
-ssh_config_user: '{{ansible_user}}'
+ssh_config_user: '{{ ansible_user }}'
 
 ssh_config_user_homedir:
   prefix: /home
-  user: '{{ssh_config_user}}'
+  user: '{{ ssh_config_user }}'
   file: .ssh/config
 
 ssh_config_system_homedir:
@@ -34,15 +34,15 @@ ssh_config:
     - name: '*'
       SendEnv:
         LANG: LC_*
-        XMODIFIERSHashKnownHosts: yes
-      GSSAPIAuthentication: yes
-      GSSAPIDelegateCredentials: no
+        XMODIFIERSHashKnownHosts: 'yes'
+      GSSAPIAuthentication: 'yes'
+      GSSAPIDelegateCredentials: 'no'
     - name: '*.vagrant.test'
       User: vagrant
-      StrictHostKeyChecking: no
+      StrictHostKeyChecking: 'no'
       UserKnownHostsFile: /dev/null
       LogLevel: ERROR
-      ForwardAgent: yes
+      ForwardAgent: 'yes'
     - name: github.com
       proxy:
         cmd: corkscrew
