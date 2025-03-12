@@ -1,9 +1,9 @@
 ---
 # tasks file for ssh_config
-- name: writing ssh config
+- name: Writing ssh config
   become: '{{ ssh_config_privilege_elevate }}'
   become_user: root
-  template:
+  ansible.builtin.template:
     src: config.j2
     dest: '{{ ssh_config_target }}'
     mode: '400'

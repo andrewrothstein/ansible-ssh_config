@@ -1,11 +1,11 @@
 [
   {
     "OS": "alpine",
-    "OS_VER": "3.18"
+    "OS_VER": "3.20"
   },
   {
     "OS": "alpine",
-    "OS_VER": "3.19"
+    "OS_VER": "3.21"
   },
   {
     "OS": "alpine",
@@ -21,26 +21,26 @@
   },
   {
     "OS": "fedora",
-    "OS_VER": "38"
+    "OS_VER": "40"
   },
   {
     "OS": "fedora",
-    "OS_VER": "39"
+    "OS_VER": "41"
   },
   {
-    "OS": "centos",
-    "OS_VER": "7"
-  },
-  {
-    "OS": "centos",
+    "OS": "rockylinux",
     "OS_VER": "8"
   },
   {
-    "OS": "ubuntu",
-    "OS_VER": "focal"
+    "OS": "rockylinux",
+    "OS_VER": "9"
   },
   {
     "OS": "ubuntu",
     "OS_VER": "jammy"
+  },
+  {
+    "OS": "ubuntu",
+    "OS_VER": "noble"
   }
 ]

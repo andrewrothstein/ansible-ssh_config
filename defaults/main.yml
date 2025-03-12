@@ -31,32 +31,32 @@ ssh_config_vals:
 
 ssh_config:
   - hosts:
-    - name: '*'
-      SendEnv:
-        LANG: LC_*
-        XMODIFIERSHashKnownHosts: 'yes'
-      GSSAPIAuthentication: 'yes'
-      GSSAPIDelegateCredentials: 'no'
-    - name: '*.vagrant.test'
-      User: vagrant
-      StrictHostKeyChecking: 'no'
-      UserKnownHostsFile: /dev/null
-      LogLevel: ERROR
-      ForwardAgent: 'yes'
-    - name: github.com
-      proxy:
-        cmd: corkscrew
-      user: git
-    - name: '*.amazonaws.com'
-      proxy:
-        cmd: corkscrew
-    - name: bastion.drewfus.org
-      ControlMaster: auto
-      ControlPath: ~/.ssh/mux-%r@%h:%p
-      ControlPersist: 15m
-      proxy:
-        cmd: corkscrew
-    - name: '*.drewfus.org'
-      proxy:
-        cmd: bastion
-        host: bastion.drewfus.org
+      - name: '*'
+        SendEnv:
+          LANG: LC_*
+          XMODIFIERSHashKnownHosts: 'yes'
+        GSSAPIAuthentication: 'yes'
+        GSSAPIDelegateCredentials: 'no'
+      - name: '*.vagrant.test'
+        User: vagrant
+        StrictHostKeyChecking: 'no'
+        UserKnownHostsFile: /dev/null
+        LogLevel: ERROR
+        ForwardAgent: 'yes'
+      - name: github.com
+        proxy:
+          cmd: corkscrew
+        user: git
+      - name: '*.amazonaws.com'
+        proxy:
+          cmd: corkscrew
+      - name: bastion.drewfus.org
+        ControlMaster: auto
+        ControlPath: ~/.ssh/mux-%r@%h:%p
+        ControlPersist: 15m
+        proxy:
+          cmd: corkscrew
+      - name: '*.drewfus.org'
+        proxy:
+          cmd: bastion
+          host: bastion.drewfus.org
