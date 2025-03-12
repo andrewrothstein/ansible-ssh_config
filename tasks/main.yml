@@ -1,9 +1,15 @@
 ---
 # tasks file for ssh_config
+- name: Ensure {{ ssh_config_dir }} exists
+  become: '{{ ssh_config_privilege_elevate }}'
+  become_user: root
+  ansible.builtin.file:
+    path: '{{ ssh_config_dir }}'
+    mode: '{{ ssh_config_dir_mode }}'
 - name: Writing ssh config {{ ssh_config_target }}
   become: '{{ ssh_config_privilege_elevate }}'
   become_user: root
   ansible.builtin.template:
     src: config.j2
     dest: '{{ ssh_config_target }}'
-    mode: '400'
+    mode: '{{ ssh_config_file_mode }}'

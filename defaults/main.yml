@@ -2,9 +2,21 @@
 # defaults file for ssh_config
 ssh_config_role: usr
 
-ssh_config_dir:
-  usr: '{{ ansible_env.HOME }}/.ssh/config'
-  sys: /etc/ssh/ssh_config
+ssh_config_dirs:
+  usr: '{{ ansible_env.HOME }}/.ssh'
+  sys: /etc/ssh
+
+ssh_config_dir_modes:
+  usr: '700'
+  sys: '755'
+
+ssh_config_files:
+  usr: config
+  sys: ssh_config
+
+ssh_config_file_modes:
+  usr: '400'
+  sys: '644'
 
 ssh_config_maps:
   - SendEnv

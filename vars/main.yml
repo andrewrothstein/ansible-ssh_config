@@ -2,4 +2,8 @@
 # vars file for ssh_config
 ssh_config_privilege_elevate: '{{ ssh_config_role == "sys" }}'
 
-ssh_config_target: '{{ ssh_config_dir[ssh_config_role] }}'
+ssh_config_dir: '{{ ssh_config_dirs[ssh_config_role] }}'
+ssh_config_file: '{{ ssh_config_files[ssh_config_role] }}'
+ssh_config_target: '{{ ssh_config_dir }}/{{ ssh_config_file }}'
+ssh_config_dir_mode: '{{ ssh_config_dir_modes[ssh_config_role] }}'
+ssh_config_file_mode: '{{ ssh_config_file_modes[ssh_config_role] }}'
