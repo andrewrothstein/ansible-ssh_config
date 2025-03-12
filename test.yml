@@ -2,4 +2,36 @@
 - name: Testing andrewrothstein.ssh_config
   hosts: all
   roles:
-    - role: '{{playbook_dir}}'
+    - role: '{{ playbook_dir }}'
+  vars:
+    ssh_config:
+      hosts:
+        - name: '*'
+          SendEnv:
+            LANG: LC_*
+            XMODIFIERSHashKnownHosts: 'yes'
+          GSSAPIAuthentication: 'yes'
+          GSSAPIDelegateCredentials: 'no'
+        - name: '*.vagrant.test'
+          User: vagrant
+          StrictHostKeyChecking: 'no'
+          UserKnownHostsFile: /dev/null
+          LogLevel: ERROR
+          ForwardAgent: 'yes'
+        - name: github.com
+          proxy:
+            cmd: /usr/local/bin/corkscrew %h %p
+            host: localhost
+            port: 3128
+          user: git
+        - name: '*.amazonaws.com'
+          proxy:
+            cmd: /usr/local/bin/corkscrew %h %p
+            host: localhost
+            port: 3128
+        - name: bastion
+          ControlMaster: auto
+          ControlPath: ~/.ssh/mux-%r@%h:%p
+          ControlPersist: 15m
+        - name: '*.drewfus.org'
+          ProxyJump: bastion
