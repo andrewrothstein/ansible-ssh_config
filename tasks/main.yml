@@ -4,6 +4,7 @@
   become: '{{ ssh_config_privilege_elevate }}'
   become_user: root
   ansible.builtin.file:
+    state: directory
     path: '{{ ssh_config_dir }}'
     mode: '{{ ssh_config_dir_mode }}'
 - name: Writing ssh config {{ ssh_config_target }}
